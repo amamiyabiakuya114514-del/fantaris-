@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">回声迷宫 - 暗视野潜入游戏</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+SC:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <!-- 巨型背景文字 -->
+    <div class="bg-text-container">
+        <div class="bg-text">SONAR MAZE SONAR MAZE SONAR MAZE</div>
+        <div class="bg-text text-outline">ECHO IN THE DARK ECHO IN THE DARK</div>
+    </div>
+
+    <!-- P5R 华丽装饰元素 -->
+    <div class="p5r-decorations">
+        <div class="caution-tape tape-1">CAUTION CAUTION CAUTION CAUTION</div>
+        <div class="caution-tape tape-2">DANGER DANGER DANGER DANGER</div>
+        <div class="p5-star star-1"></div>
+        <div class="p5-star star-2"></div>
+        <div class="p5-star star-3"></div>
+        <div class="p5-star star-4"></div>
+    </div>
+
+    <div class="app-container">
+        <header>
+            <div class="header-top">
+                <h1 data-i18n="header_title">🎮 回声迷宫</h1>
+                <button id="lang-toggle" class="lang-btn">🔄 日本語 / 中文</button>
+            </div>
+        </header>
+
+        <main>
+            <section id="sonar" class="game-section active">
+                <h2 data-i18n="section_title">暗视野潜入</h2>
+                <div class="game-container">
+                    
+                    <div class="status-bar">
+                        <span><span data-i18n="floor_label">层数:</span> <span id="sonar-floor" style="color:var(--p5-yellow);">1</span></span>
+                        <span><span data-i18n="status_label">状态:</span> <span id="sonar-status" data-i18n="status_safe">安全</span></span>
+                        <span><span data-i18n="enemies_label">怪物残存:</span> <span id="sonar-enemies">0</span></span>
+                    </div>
+
+                    <div class="resources-row">
+                        <div class="stamina-container">
+                            <div class="stamina-label" data-i18n="stamina_label">STAMINA</div>
+                            <div class="stamina-bar-bg">
+                                <div id="stamina-bar-fill" class="stamina-bar-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skills-container">
+                            <div class="skill-slot">
+                                <span class="skill-key">Q</span>
+                                <span class="skill-name" data-i18n="skill_q">穿透强音</span>
+                                <span class="skill-ammo" id="ammo-q">0</span>
+                            </div>
+                            <div class="skill-slot">
+                                <span class="skill-key">E</span>
+                                <span class="skill-name" data-i18n="skill_e">爆破声雷</span>
+                                <span class="skill-ammo" id="ammo-e">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="canvas-wrapper">
+                        <canvas id="sonar-canvas" width="900" height="600"></canvas>
+                        
+                        <!-- 游戏结束覆盖层 -->
+                        <div id="game-overlay" class="game-overlay hidden">
+                            <div class="overlay-content">
+                                <h3 id="overlay-title"></h3>
+                            </div>
+                        </div>
+
+                        <!-- 升级卡片覆盖层 -->
+                        <div id="upgrade-overlay" class="game-overlay hidden upgrade-overlay">
+                            <h3 data-i18n="upgrade_title" class="upgrade-title">进入深层区域 - 选择一项强化</h3>
+                            <div class="cards-container" id="cards-container">
+                                <!-- Cards injected via JS -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="controls-hint" id="controls-hint" data-i18n="controls_hint">
+                        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移动 | 
+                        <kbd>鼠标左</kbd> 探索波 | <kbd>鼠标右</kbd> 攻击波<br>
+                        <kbd>Q</kbd> 释放穿透强音 | <kbd>E</kbd> 放置爆破声雷
+                    </div>
+                    <button class="reset-btn" id="sonar-start" data-i18n="btn_enter">进入暗影</button>
+                </div>
+                
+                <!-- 简介 -->
+                <div class="game-description">
+                    <h3 data-i18n="desc_title">游戏简介</h3>
+                    <p data-i18n="desc_text">身处伸手不见五指的深层印象空间，只能通过声波来感知周围的环境。<br>
+                    <strong>注意：</strong>体力非常有限！声波消耗体力，过度发射会导致体力透支而陷入长时间的眩晕。通过升级获取技能卡片，寻找发光的出口进入下一层！<br>
+                    <strong>变异暗影：</strong>深层区域潜伏着会冲刺的暗影以及能免疫探索波的幽灵暗影，请小心行事。</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
